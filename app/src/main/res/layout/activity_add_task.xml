@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.amitpatil.todoapp.viewmodels.AddTaskViewModel" />
+
+        <variable
+            name="model"
+            type="com.amitpatil.todoapp.model.TaskModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/add_task"
+            android:textColor="@color/colorPrimary"
+            android:textSize="30dp" />
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/task_name"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25dp" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/txt_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@={model.title}"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25dp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/task_details"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25dp" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/txt_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="top|left"
+            android:lines="4"
+            android:maxLines="4"
+            android:minLines="3"
+            android:singleLine="false"
+            android:text="@={model.details}"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <android.support.v7.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight=".5"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:onClick="@{() -> viewModel.onSubmit(model)}"
+                android:text="@string/task_submit"
+                android:textColor="@android:color/white"
+                android:textSize="25dp" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_weight=".5"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:onClick="@{() -> viewModel.onClear()}"
+                android:text="@string/task_clear"
+                android:textColor="@android:color/white"
+                android:textSize="25dp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

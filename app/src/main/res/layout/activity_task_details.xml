@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.amitpatil.todoapp.database.TodoData" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/task_details"
+            android:textColor="@color/colorPrimary"
+            android:textSize="30dp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/task_name"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            android:visibility="visible" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@{model.title}"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            android:visibility="visible" />
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/task_details"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            android:visibility="visible" />
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@{model.details}"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            android:visibility="visible" />
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/task_created_at"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            android:visibility="visible" />
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@{model.created_date}"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            android:visibility="visible" />
+
+
+    </LinearLayout>
+</layout>
