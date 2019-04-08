@@ -1,5 +1,7 @@
 package com.amitpatil.todoapp.viewmodels;
 
+import android.util.Log;
+
 import com.amitpatil.todoapp.base.BaseViewModel;
 import com.amitpatil.todoapp.base.TodoApp;
 import com.amitpatil.todoapp.database.TODORepository;
@@ -10,6 +12,9 @@ import com.amitpatil.todoapp.views.addtask.AddTaskNavigator;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class AddTaskViewModel extends BaseViewModel<AddTaskNavigator> {
 
@@ -27,7 +32,13 @@ public class AddTaskViewModel extends BaseViewModel<AddTaskNavigator> {
             data.setTitle(user.getTitle());
             data.setDetails(user.getDetails());
             data.setCreated_date(getCurrentDate());
-            todoRepository.dbOperation(data);
+            todoRepository.addTask(data);
+
+            disposable.add(todoRepository.addTask(data)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(() -> Log.e("Alpha", "Successful Insertion"),
+                            throwable -> Log.e("Alpha", "error while insertion " + throwable.getLocalizedMessage())));
 
             //Redirect to list
             mNavigator.redirecttaskList();

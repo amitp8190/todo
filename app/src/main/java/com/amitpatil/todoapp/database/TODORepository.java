@@ -1,9 +1,12 @@
 package com.amitpatil.todoapp.database;
 
-import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 
 import java.util.List;
+
+import io.reactivex.Completable;
+import io.reactivex.Flowable;
+import io.reactivex.Maybe;
 
 public class TODORepository {
 
@@ -14,41 +17,46 @@ public class TODORepository {
         myAppDao = db.daoAccess();
     }
 
-    public List<TodoData> getToDoData() {
+    public Flowable<List<TodoData>> getToDoData() {
         return myAppDao.getAllToDoListData();
     }
 
 
-    public int updateTagData(String title, String details, String created_date, String id) {
+    /*public Maybe updateTagData(String title, String details, String created_date, String id) {
         return myAppDao.update(title, details, created_date, id);
-    }
+    }*/
 
 
     public void dbOperation(TodoData user1) {
         if (null != user1) {
-            new DBOperation(myAppDao).execute(user1);
+        //    new DBOperation(myAppDao).execute(user1);
         } else {
             new IllegalArgumentException("TodoData class cannot be null");
         }
     }
 
 
-    public int deleleAll() {
+/*
+    public Maybe deleleAll() {
         return myAppDao.deleteAllTodoData();
     }
+*/
 
-    class DBOperation extends AsyncTask {
-
-        private TODODao dao;
-
-        DBOperation(TODODao dao) {
-            this.dao = dao;
-        }
-
-        @Override
-        protected Object doInBackground(Object[] objects) {
-            dao.insertTask((TodoData) objects[0]);
-            return null;
-        }
+    public Completable addTask(TodoData todoData) {
+        return myAppDao.insertTask(todoData);
     }
+
+//    class DBOperation extends AsyncTask {
+//
+//        private TODODao dao;
+//
+//        DBOperation(TODODao dao) {
+//            this.dao = dao;
+//        }
+//
+//        @Override
+//        protected Object doInBackground(Object[] objects) {
+//            return null;
+//        }
+//    }
 }
